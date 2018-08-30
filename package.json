@@ -1,0 +1,18 @@
+{
+  "name": "03-projekt-final",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "start": "gulp develop"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.24.6",
+    "gulp": "^4.0.0",
+    "gulp-sass": "^4.0.1",
+    "normalize.css": "^8.0.0"
+  }
+}
