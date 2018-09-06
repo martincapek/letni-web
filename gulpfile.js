@@ -1,6 +1,10 @@
 var gulp = require('gulp');
 var browserSync = require('browser-sync').create();
 var sass = require('gulp-sass');
+var postcss = require('gulp-postcss');
+var sourcemaps = require('gulp-sourcemaps');
+var autoprefixer = require('autoprefixer');
+var csso = require("gulp-csso");
 
 
 gulp.task(
@@ -32,10 +36,14 @@ gulp.task(
   gulp.series(
     function compileCss() {
       return gulp
-        .src('./src/scss/main.scss') // this is the source of for compilation
-        .pipe(sass().on('error', sass.logError)) // compile SCSS to CSS and also tell us about a problem if happens
-        .pipe(gulp.dest('./dist/css')) // destination of the resulting CSS
-        .pipe(browserSync.stream()); // tell browsersync to reload CSS (injects compiled CSS)
+        .src('./src/scss/main.scss') // zdrojový soubor SCSS
+        .pipe(sourcemaps.init()) // inicializace source mapy
+        .pipe(sass().on('error', sass.logError)) // zkompiluj SCSS do standardního CSS a případně oznam chyby
+        .pipe(postcss([ autoprefixer() ])) // automaticky přidej vendor prefixy, pokud je třeba
+        .pipe(csso()) // minifikace CSS
+        .pipe(sourcemaps.write("./")) // ulož source mapu
+        .pipe(gulp.dest('./dist/css')) // zapiš do cílového CSS
+        .pipe(browserSync.stream()); // řekni Browser Syncu, aby načetl nové CSS a aktualizoval stránku v prohlížeči
     }
   )
 );
@@ -55,9 +63,9 @@ gulp.task(
           }
         }
       });
-      gulp.watch('./src/templates/**/*', gulp.series('copy'));
-      gulp.watch('./src/images/**/*', gulp.series('copy'));
-      gulp.watch('./src/scss/**/*', gulp.series('scss')); // watch for changes in SCSS
+      gulp.watch('./src/templates/**/*', gulp.series('copy')); // sleduj změny v HTML šablonách
+      gulp.watch('./src/images/**/*', gulp.series('copy')); // sleduj změny ve složce obrázky
+      gulp.watch('./src/scss/**/*', gulp.series('scss')); // sleduj změny v SCSS
     }
   )
 );
