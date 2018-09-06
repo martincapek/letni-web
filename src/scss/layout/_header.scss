@@ -1,0 +1,135 @@
+// label {
+//   width: 30px;
+//   height: 30px;
+//   border: 2px solid black;
+//   cursor: pointer;
+// }
+
+// #check {
+//   display: none;
+// }
+
+// .menu {
+//   opacity: 0;
+//   transition: 500ms;
+// }
+
+// #check:checked+label {
+//   background: green;
+// }
+
+// #check:checked+.menu {
+//   opacity: 1;
+// }
+
+
+.ut-header {
+  padding: 20px 15px;
+}
+ 
+.ut-header__container { 
+  display: flex;
+  justify-content: space-between;
+  justify-items: center;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.ut-menu-toggler {
+  margin-bottom: 0;
+  cursor: pointer;
+}
+
+.ut-menu-toggler__line {
+  width: 2.5rem;
+  height: 3px;
+  border-radius: 5px;
+  display: block;
+  background: {
+    color: $ut-c-accent;
+  }
+  margin-bottom: 3px;
+  transition: transform 300ms ease, opacity 200ms ease;
+}
+
+/* stylelint-disable selector-no-id  */
+#utMainToggle {
+  display: none;
+}
+ 
+#utMainToggle:checked + .ut-menu-toggler .ut-menu-toggler__line {
+  &:first-child {
+    transform: translateY(6px) rotate(45deg);
+  }
+
+  &:last-child {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
+  &:nth-child(2) {
+    opacity: 0;
+  }
+}
+
+/* stylelint-enable */
+.ut-toggle {
+  overflow: hidden;
+  transition: max-height 300ms linear, opacity 300ms linear;
+  max-height: 0;
+  width: 100%;
+  opacity: 0;
+}
+
+.ut-menu {
+  list-style: none;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* stylelint-disable selector-no-id  */
+
+#utMainToggle:checked ~ .ut-toggle {
+  max-height: 30rem;
+  opacity: 1;
+}
+
+@media (max-width: 40em) {
+
+}
+/* stylelint-enable */
+
+.ut-menu__link {
+  padding: 10px 15px;
+  display: block;
+  text-decoration: none;
+  color: $ut-c-text;
+  transition: color 200ms ease;
+}
+
+
+.ut-menu__item--active .ut-menu__link,
+.ut-menu__link:hover {
+  color: $ut-c-accent
+}
+
+@include moreThan(40em) {
+
+  .ut-toggle {
+    max-height: none;
+    width: auto;
+    opacity: 1;
+  }
+
+  .ut-menu {
+    display: flex;
+  }
+  
+
+  .ut-menu-toggler {
+    display: none;
+  }
+}

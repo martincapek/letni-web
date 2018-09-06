@@ -8,47 +8,47 @@
 
   <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
   <link rel="stylesheet" href="/css/main.css">
-
-
-  <style>
-    
-    label {
-      width: 30px;
-      height: 30px;
-      border: 2px solid black;
-      cursor: pointer;
-    }
-
-    #check {
-      display: none;
-    }
-
-    .menu {
-      opacity: 0;
-      transition: 500ms;
-    }
-    #check:checked + label {
-      background: green;
-    }
-
-     #check:checked + .menu {
-      opacity: 1;
-    }
-  </style>
 </head>
 <body>
 
-  <label for="check">menu</label>
+  <header class="ut-header">
+    <div class="ut-header__container">
+      <div class="ut-logo">
+        <img src="/images/ut-logo.png" alt="UpTo logo" class="ut-logo__img">
+      </div>
 
-  <input type="checkbox" id="check">
+      <input type="checkbox" id="utMainToggle">
+      <label for="utMainToggle" class="ut-menu-toggler">
+        <span class="ut-menu-toggler__line"></span>
+        <span class="ut-menu-toggler__line"></span>
+        <span class="ut-menu-toggler__line"></span>
+      </label>
+
+
+     <div class="ut-toggle">
+        <ul class="ut-menu">
+            <li class="ut-menu__item">
+              <a class="ut-menu__link" href="#">Home</a>
+            </li>
+            <li class="ut-menu__item">
+              <a class="ut-menu__link" href="#">About</a>
+            </li>
+            <li class="ut-menu__item">
+              <a class="ut-menu__link" href="#">Product</a>
+            </li>
+            <li class="ut-menu__item">
+              <a class="ut-menu__link" href="#">Contact</a>
+            </li>
+            <li class="ut-menu__item">
+              <a class="ut-menu__link" href="#">Get started</a>
+            </li>
+          </ul>
+     </div>
+    </div>
+  </header>
+
+
   
-  <ul class="menu">
-    <li>Home</li>
-    <li>About</li>
-    <li>Product</li>
-    <li>Contact</li>
-    <li>Get started</li>
-  </ul>
 
 </body>
 </html>
